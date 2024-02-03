@@ -6,6 +6,11 @@ public class Sager_Problem4 {
         int n;
         System.out.print("Enter an integer: ");
         n = scan.nextInt();
+        /* Took modulo of the input number in order to see if each digit
+         * of number was binary in while loop. Continued to divide by 10 if 
+         * binary number had many digits. If binary number was not present, the 
+         * loop would break and user would receive response either way.
+         */
         while (n != 0){
             if (n % 10 == 0 || n % 10 == 1){
                 n = n / 10;

@@ -10,6 +10,10 @@ public class Sager_Problem2 {
         System.out.print("Pick a number between 1 and 1000: ");
         int input = scan.nextInt();
         int numGuesses = 1;
+        /* Used a while loop until the user guessed the correct target number.
+         * If statements were used within the loop to give the user feedback on
+         * which direction they need to guess next.
+         */
         while (input != target){
             if (input < target){
                 System.out.print("Too low, guess again: ");
@@ -21,7 +25,7 @@ public class Sager_Problem2 {
             numGuesses++;
         }
         System.out.println("\nCorrect, the number was " + target);
-        System.out.println("You used " + numGuesses + " guesses");
+        System.out.println("You used " + numGuesses + " guesses"); //output # of guesses
         scan.close();
     }
 }
