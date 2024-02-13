@@ -1,5 +1,5 @@
 import java.util.Scanner; //Scanner library used for each problem
-
+//run and clean workspace cache if directory problem occurs
 public class Sager_Problem1 {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
