@@ -16,6 +16,7 @@ public class Sager_Problem1 {
                 }
             }
         }
+        scan.close();
         
 
     }
