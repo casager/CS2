@@ -1,11 +1,16 @@
+/*
+ * Program used to find median of both 1d and 2d arrays. Inputs 
+ * are provided for the program and sorting is used in order to get input into 
+ * usable form to return the median for each type of array.
+ */
+
 public class Sager_Problem4 {
 
-    public static int[] bubbleSort(int[] arr) {
+    public static int[] bubbleSort(int[] arr) { //using bubble sort to accurately find median number
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
-                    // Swap arr[j] and arr[j+1]
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
@@ -14,7 +19,7 @@ public class Sager_Problem4 {
         }
         return arr;
     }
-    public static double returnMedian(int[] arr){
+    public static double returnMedian(int[] arr){ //use sorted array to find median of 1d
         double med;
         arr = bubbleSort(arr);
         if (arr.length % 2 == 0){
@@ -28,7 +33,7 @@ public class Sager_Problem4 {
         return med;
     }
 
-    public static double returnMedian(int[][] arr){
+    public static double returnMedian(int[][] arr){//find median of 2d
         //converting the 2d array into 1d
         int []singleArray = new int[arr[0].length + arr[1].length];
         for (int x = 0, i = 0; x < arr.length; x++) {
@@ -51,7 +56,7 @@ public class Sager_Problem4 {
     public static void main(String[] args) {
         int [] arr1 = {3, 6, 4, 2, 5};
         int [][] arr2 = {{1,4,8}, {2,9,3,7,8}};
-        System.out.println(returnMedian(arr1));
-        System.out.println(returnMedian(arr2));
+        System.out.println("Median of 1d array: " + returnMedian(arr1));
+        System.out.println("Median of 2d array: " + returnMedian(arr2));
     }
 }

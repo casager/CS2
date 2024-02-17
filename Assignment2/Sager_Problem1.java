@@ -1,3 +1,9 @@
+/*
+ * This program takes 5 integer inputs and outputs all of the possible pairs
+ * amongst the numbers. Duplicate pairs are not allowed. Click enter after each 
+ * input for the array in order to add integers to the array
+ */
+
 import java.util.Scanner;
 
 public class Sager_Problem1 {
