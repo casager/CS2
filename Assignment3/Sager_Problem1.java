@@ -1,9 +1,9 @@
 
 /*
- * This program explores the concepts of inheritance and polymorphism to represent
- * different types of cars in JAVA. The Vehicle class serves as the parent class to 
- * each of the GasCar, ElectricCar, and HybridCar subclasses. Methods of overloading 
- * and overriding were utilized in order to successfully complete this assignment.
+ * This program explores the concepts of inheritance and polymorphism to represent different types of cars in JAVA. 
+ * The Vehicle class serves as the parent class to each of the GasCar, ElectricCar, and HybridCar subclasses. 
+ * In order to run successfully, compile "javac Sager_Problem1.java" then run "java Tester". Since there
+ * were only parts to one problem, only one file was used to implement the classes.
  */
 
 class Vehicle{ //beginning of vehicle class
