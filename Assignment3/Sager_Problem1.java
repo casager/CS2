@@ -1,10 +1,17 @@
 
-class Vehicle{
+/*
+ * This program explores the concepts of inheritance and polymorphism to represent different types of cars in JAVA. 
+ * The Vehicle class serves as the parent class to each of the GasCar, ElectricCar, and HybridCar subclasses. 
+ * In order to run successfully, compile "javac Sager_Problem1.java" then run "java Tester". Since there
+ * were only parts to one problem, only one file was used to implement the classes.
+ */
 
-    private String make;
-    private String model;
-    private int year;
-    private String plate_num;
+class Vehicle{ //beginning of vehicle class
+
+    protected String make;
+    protected String model;
+    protected int year;
+    protected String plate_num;
     protected int miles_driven;
 
     public Vehicle(){
@@ -23,9 +30,9 @@ class Vehicle{
         this.miles_driven = miles_driven;
     }
 
-}
+} //end vehicle class
 
-class GasCar extends Vehicle{
+class GasCar extends Vehicle{ //beginning GasCar subclass
 
     private float tank_cap;
     private String fuel_type;
@@ -46,9 +53,9 @@ class GasCar extends Vehicle{
         return mpg;
     }
 
-}
+} //end GasCar subclass
 
-class ElectricCar extends Vehicle{
+class ElectricCar extends Vehicle{ //beginning ElectricCar subclass
     
     private float battery_cap;
 
@@ -66,9 +73,9 @@ class ElectricCar extends Vehicle{
         float mpge = (new_miles * cost_1kWh) / battery_cap;
         return mpge;
     }
-}
+} //end electric car subclass
 
-class HybridCar extends Vehicle{
+class HybridCar extends Vehicle{ //beginning HybridCar subclass
 
     private float battery_cap;
     private float tank_cap;
@@ -95,28 +102,28 @@ class HybridCar extends Vehicle{
         miles_driven += new_miles;
         return mpgh;
     }
-}
+}//end HybridCar subclass
 
-class Tester{
-    public static void main(String[] args) {
+class Tester{ //beginning of Tester class
+    public static void main(String[] args) { //instantiating objects in main for each of the previous classes
         Vehicle vehicle1 = new Vehicle();
         Vehicle vehicle2 = new Vehicle("Toyota", "Tacoma", 2023, "OSU_POKE", 10000);
 
         GasCar gasCar1 = new GasCar();
         GasCar gasCar2 = new GasCar("Toyota", "Tacoma", 2023, "OSU_POKE", 10000, 15, "gas");
-        float gas_eff = gasCar2.getFuelEfficiency(300);
+        float gas_eff = gasCar2.getFuelEfficiency(300); //using getFuelEfficiency method
         System.out.println("Gas Car Fuel Efficiency: " + gas_eff);
 
         ElectricCar electric1 = new ElectricCar();
         ElectricCar electric2 = new ElectricCar("Tesla", "ModelY", 2020, "ORANGE", 5000, 30);
-        float electric_eff = electric2.getFuelEfficiency(400);
+        float electric_eff = electric2.getFuelEfficiency(400); //using getFuelEfficiency method
         System.out.println("Electric Car Fuel Efficiency: " + electric_eff);
 
         HybridCar hybrid1 = new HybridCar();
         HybridCar hybrid2 = new HybridCar("Ford", "Maverick", 2024, "OK_STATE", 3000, 20, 20, "gas");
-        float hybrid_eff = hybrid2.getFuelEfficiency(400);
+        float hybrid_eff = hybrid2.getFuelEfficiency(400); //using getFuelEfficiency method
         System.out.println("Hybrid Car Fuel Efficiency: " + hybrid_eff);
 
     }
-}
+} //end of Tester class
 
