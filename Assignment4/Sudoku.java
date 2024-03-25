@@ -1,11 +1,22 @@
+/* Simple sudoku game that tells whether a bad move has been committed.
+ * In order to check your move, simply click the "solve" button after typing
+ * a number 1-9 in the text fields. A congratulations message should appear]
+ * upon winning the game.
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
-public class Sudoku extends JFrame {
+public class Sudoku extends JFrame implements ActionListener {
     private JPanel panels[] = new JPanel[9];
     private JTextField[][] grid = new JTextField[9][9];
-    
+    private JButton solveButton;
+    private boolean goodMove = true;
+    private boolean boardFull = false;
+    private JTextField num = new JTextField();
+
     public Sudoku() {
         setSize(600, 600);
         setTitle("Sudoku Game");
@@ -29,10 +40,10 @@ public class Sudoku extends JFrame {
             gamePanel.add(p);
         }
         add(gamePanel, BorderLayout.CENTER);
-        JButton solveButton = new JButton();
+        solveButton = new JButton("Solve");
         //solveButton.setPreferredSize(new Dimension(100, 50));
-        add(new JButton("Solve"), BorderLayout.SOUTH);
-
+        add(solveButton, BorderLayout.SOUTH);
+        
         // Hard-coding the initial board
         //Panel 1                   
         grid[0][0].setText("1"); grid[0][1].setText("");  grid[0][2].setText("6");
@@ -70,8 +81,89 @@ public class Sudoku extends JFrame {
         grid[8][0].setText("5");  grid[8][1].setText("");  grid[8][2].setText("8");
         grid[8][3].setText("4");  grid[8][4].setText("9");  grid[8][5].setText("3");
         grid[8][6].setText("");  grid[8][7].setText("1");  grid[8][8].setText("");
+
+        for(int i = 0; i < 9; i++){
+            for (int j = 0; j < 9; j++){
+                if (!grid[i][j].getText().equals("")){
+                    grid[i][j].setEditable(false);
+                }
+            }
+        }
+        
+        startGame();
         setVisible(true);
+
     }
+
+    private void startGame(){
+        solveButton.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        boardFull = true;
+        //check if numbers in same box
+        if(e.getSource() == solveButton){
+            outerloop1:
+            for(int i = 0; i < 9; i++){
+                for (int j = 0; j < 9; j++){
+                    for(int k = j + 1; k < 9; k++){
+                        if(grid[i][j].getText().equals(grid[i][k].getText()) && !grid[i][j].getText().equals("")){
+                            badMove(grid[i][j],grid[i][k]);
+                            goodMove = false;
+                            break outerloop1;
+                        }
+
+                    }
+                }
+            }
+
+            //check rows
+            outerloop2:
+            for(int i = 0; i < 9; i++){
+                for (int j = 0; j < 9; j++){
+                    num = grid[i][j];
+                    for (int k = 0; k < 9; k++){
+                        for(int n = 0; n < 9; n++){
+                            //if(grid[i][j].getText())
+                            if (num.getText().equals(grid[k][n].getText()) && (i/3 == k/3) && (n/3 == j/3) && (k != i) && !num.getText().equals("")){
+                                badMove(num, grid[k][n]);
+                                goodMove = false;
+                                break outerloop2;
+                            }
+                            else if(num.getText().equals(grid[k][n].getText()) && (i%3 == k%3) && (n%3 == j%3) && (k != i) && !num.getText().equals("")){
+                                badMove(num, grid[k][n]);
+                                goodMove = false;
+                                break outerloop2;
+                            }
+                        }
+                    }
+                    if(grid[i][j].getText().isEmpty()){
+                        boardFull = false;
+                    }
+
+                }
+            }
+
+            if (goodMove == true && !boardFull){
+                JOptionPane.showMessageDialog(this,"Good Job! Keep Going.");
+            }
+            if(boardFull == true && goodMove == true){
+                JOptionPane.showMessageDialog(this,"Congratulations, you won!");
+            }
+        }
+    }
+
+    private void badMove(JTextField a, JTextField b){
+        Color aC = a.getBackground();
+        Color bC = b.getBackground();
+        a.setBackground(Color.RED);
+        b.setBackground(Color.RED);
+        JOptionPane.showMessageDialog(this,"Bad Move");
+        a.setBackground(aC);
+        b.setBackground(bC);
+    }
+
     public static void main(String[] args) {
         new Sudoku();
     }

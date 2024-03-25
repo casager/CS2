@@ -1,3 +1,10 @@
+/* Tictactoe program that lets you first decide if you 
+ * would like to play as X or O. Once chosen, the computer will play
+ * by randomly placing their X or O. Game continues until there is a 
+ * win or draw.
+ * 
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -14,7 +21,7 @@ public class TicTacToe extends JFrame implements ActionListener{
 
     public TicTacToe() {
         setTitle("Tic Tac Toe");
-        setSize(300, 350); // Increased height to accommodate the start button
+        setSize(400, 450); // Increased height to accommodate the start button
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
@@ -131,16 +138,6 @@ public class TicTacToe extends JFrame implements ActionListener{
                 }
                 gameOver = true;
             } 
-            // else if (!userX && !gameOver) {
-            //     //computerMove();
-            //     if (checkWin()) {
-            //         JOptionPane.showMessageDialog(this, winner + " wins!");
-            //         gameOver = true;
-            //     } else if (isBoardFull()) {
-            //         JOptionPane.showMessageDialog(this, "It's a draw!");
-            //         gameOver = true;
-            //     }
-            // }
             else computerMove();
             if (checkWin() && gameOver == false) {
                 int choice = JOptionPane.showOptionDialog(
